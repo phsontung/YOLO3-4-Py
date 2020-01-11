@@ -41,6 +41,8 @@ cdef extern from "bridge.h":
         float *data
 
     float *network_predict_image(network *net, image im)
+    float *network_predict(network *net, float *input)
+    void set_batch_network(network *net, int b)
 
     int getCV_8UC3()
     image get_darknet_image(const Mat &input)
