@@ -117,7 +117,9 @@ cdef class Detector:
         """
         cdef int num = 0
         cdef int* pnum = &num
-        network_predict_image(self.net, image.img)
+        set_batch_network(self.net, 1)
+        network_predict(self.net, image.img.data)
+        # network_predict_image(self.net, image.img)
         dets = get_network_boxes(self.net, image.img.w, image.img.h, thresh, hier_thresh, <int*>0, 0, pnum)
 
         num = pnum[0]
